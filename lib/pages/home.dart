@@ -4,8 +4,8 @@ import 'package:app_go/pages/hos.dart';
 import 'package:app_go/pages/med.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class FrontPage extends StatelessWidget {
+  const FrontPage({super.key});
 
   @override
   Widget build(BuildContext context) {

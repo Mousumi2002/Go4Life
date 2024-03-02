@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 
-class BottomNavBar extends StatelessWidget {
-  const BottomNavBar({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class BottomNavBar extends StatelessWidget {
 
     List<Widget> _buildScreens() {
       return [
-        const HomePage(),
+        const FrontPage(),
         const PlaceHolderPage(),
         const PlaceHolderPage(),
         const PlaceHolderPage(),
