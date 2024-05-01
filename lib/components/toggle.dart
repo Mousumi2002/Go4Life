@@ -1,5 +1,8 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
+import 'package:app_go/controller/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/instance_manager.dart';
 
 class Togglebutton extends StatefulWidget {
   const Togglebutton({super.key});
@@ -15,9 +18,10 @@ class _TogglebuttonState extends State<Togglebutton> {
   //bool loading = false;
   @override
   Widget build(BuildContext context) {
-    return AnimatedToggleSwitch<int>.size(
-      current: value,
-      values: const [0, 1],
+    final LoginPageController loginPageController  = Get.put(LoginPageController());
+    return Obx(() => AnimatedToggleSwitch<bool>.size(
+      current: loginPageController.isSignIn.value,
+      values: const [true, false],
       iconOpacity: 1,
       indicatorSize: const Size.fromWidth(100),
       iconAnimationType: AnimationType.onHover,
@@ -44,10 +48,17 @@ class _TogglebuttonState extends State<Togglebutton> {
         );
       },
       onChanged: (i) {
-        setState(() => value = i);
+      loginPageController.setSignIn(i);
+      /*bool isClicked = false;
+      void toggleSwitched(bool value){
+        setState(() {
+          isClicked = !isClicked;
+        });
+        }*/
+        print(i);
         return Future<dynamic>.delayed(Duration(seconds: 1));
       },
       loading: false,
-    );
+    ));
   }
 }

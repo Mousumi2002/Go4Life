@@ -1,74 +1,38 @@
 import 'package:app_go/components/toggle.dart';
-import 'package:app_go/nav.dart';
+import 'package:app_go/controller/login_page.dart';
+import 'package:app_go/pages/sign_in.dart';
+import 'package:app_go/pages/sign_up.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/instance_manager.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    final LoginPageController loginPageController = Get.put(LoginPageController());
+    return Obx(() => Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          //crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/go_icon.png',
-              width: 100,
-              height: 95,
-            ),
-            SizedBox(height: 24),
-            Togglebutton(),
-            SizedBox(height: 24),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  prefixIcon: Icon(
-                    Icons.person,
-                    color: Color.fromARGB(255, 10, 55, 214),
-                  ),
-                  hintText: 'Username',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            //crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/go_icon.png',
+                width: 100,
+                height: 95,
               ),
-            ),
-            SizedBox(height: 6),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  prefixIcon: Icon(
-                    Icons.lock,
-                    color: Color.fromARGB(255, 10, 55, 214),
-                  ),
-                  hintText: 'Password',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 10, 55, 214),
-                padding: EdgeInsets.symmetric(horizontal: 160, vertical: 16),
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
-                );
-              },
-              child: Text('Sign In'),
-            ),
-          ],
+              SizedBox(height: 12),
+              Togglebutton(),
+              SizedBox(height: 5),
+              loginPageController.isSignIn.value ? SignIn() : SignUp(),
+            ],
+          ),
         ),
       ),
-    );
+    ));
   }
 }
+

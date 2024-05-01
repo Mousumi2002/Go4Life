@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "374661351492",
+    "project_id": "phone-go-974a1",
+    "storage_bucket": "phone-go-974a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374661351492:android:9cdf10eaaf4c745c801411",
+        "android_client_info": {
+          "package_name": "com.example.app_go"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "374661351492-3npaifbekkpsp0j1fh68qee48lb6op6a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKb3utyP-yUDOHoxOVwoqePnF_RaXaqTw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "374661351492-3npaifbekkpsp0j1fh68qee48lb6op6a.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "374661351492-hcjkkngvld1m7o3a7bg57hg3pbav1l8k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.appGo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
