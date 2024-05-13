@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 
 
 
+  // ignore: non_constant_identifier_names
   AppBar AppBarTitle() {
     return AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: Icon(
+        leading: const Icon(
           Icons.location_pin,
           color: Color.fromRGBO(12, 97, 255, 0.612),
           size: 35.0,

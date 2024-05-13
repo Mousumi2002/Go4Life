@@ -12,24 +12,22 @@ class SearchMed extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            child: Row(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.arrow_back),
-                  iconSize: 31.0,
-                ),
-                Text(
-                  'Medicine',
-                  style: TextStyle(
-                      color: const Color.fromARGB(255, 10, 55, 214),
-                      fontSize: 22),
-                )
-              ],
-            ),
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(Icons.arrow_back),
+                iconSize: 31.0,
+              ),
+              Text(
+                'Medicine',
+                style: TextStyle(
+                    color: const Color.fromARGB(255, 10, 55, 214),
+                    fontSize: 22),
+              )
+            ],
           ),
           Container(
             margin: EdgeInsets.all(14),
@@ -43,8 +41,9 @@ class SearchMed extends StatelessWidget {
                   borderSide: BorderSide.none
                 ),
                 hintText: "Search Medicine",
-                suffixIcon: Icon(Icons.search),
-                suffixIconColor: Color.fromARGB(255, 255, 255, 255)
+                hintStyle: TextStyle(fontWeight: FontWeight.normal,),
+                suffixIcon: IconButton(onPressed: (){}, icon: Icon(Icons.search),),
+                suffixIconColor: Color.fromARGB(255, 124, 124, 124)
               ),
             ),
           )

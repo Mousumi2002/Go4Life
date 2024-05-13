@@ -1,3 +1,4 @@
+import 'package:app_go/pages/cart_page.dart';
 import 'package:app_go/pages/home.dart';
 import 'package:app_go/pages/placeholder.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class HomePage extends StatelessWidget {
         const FrontPage(),
         const PlaceHolderPage(),
         const PlaceHolderPage(),
-        const PlaceHolderPage(),
+        const CartPage(),
         const PlaceHolderPage(),
       ];
     }

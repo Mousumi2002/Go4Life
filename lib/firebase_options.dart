@@ -64,6 +64,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '374661351492',
     projectId: 'phone-go-974a1',
     storageBucket: 'phone-go-974a1.appspot.com',
+    androidClientId: '374661351492-sarmjf31lgq15ulfno0prspdbcu2t19t.apps.googleusercontent.com',
     iosClientId: '374661351492-hcjkkngvld1m7o3a7bg57hg3pbav1l8k.apps.googleusercontent.com',
     iosBundleId: 'com.example.appGo',
   );
@@ -74,6 +75,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '374661351492',
     projectId: 'phone-go-974a1',
     storageBucket: 'phone-go-974a1.appspot.com',
+    androidClientId: '374661351492-sarmjf31lgq15ulfno0prspdbcu2t19t.apps.googleusercontent.com',
     iosClientId: '374661351492-hcjkkngvld1m7o3a7bg57hg3pbav1l8k.apps.googleusercontent.com',
     iosBundleId: 'com.example.appGo',
   );
@@ -87,4 +89,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'phone-go-974a1.appspot.com',
     measurementId: 'G-JKXDSVJ2YE',
   );
+
 }

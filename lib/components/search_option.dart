@@ -10,12 +10,15 @@ class SearchDoc extends StatelessWidget {
       width: 300,
       child: TextField(
           controller: searchController,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             isDense: false,
               contentPadding: EdgeInsets.all(10.0),
               hintText: 'Search Doctor',
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.white, width: 1.5),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
               ),
               ),
               ),

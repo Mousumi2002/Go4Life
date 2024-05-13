@@ -9,18 +9,18 @@ class FrontPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBarTitle(),
-      body: SafeArea(
-        child: Column(children: <Widget>[
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBarTitle(),
+        body: Column(children: <Widget>[
           Container(
               alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
               ),
-              padding: EdgeInsets.all(18.0),
-              child: Column(
+              padding: const EdgeInsets.all(18.0),
+              child: const Column(
                 children: <Widget>[
                   Text('Assistance',
                       style: TextStyle(
@@ -40,10 +40,10 @@ class FrontPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => SearchMed()),
+                            builder: (context) => const SearchMed()),
                       );
                     }),
-                SizedBox(height: 10.0),
+                const SizedBox(height: 10.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -57,7 +57,7 @@ class FrontPage extends StatelessWidget {
                             builder: (context) =>  TabControl()),
                       );
                     }),
-                    SizedBox(width: 4.0),
+                    const SizedBox(width: 4.0),
                     CardTile1(
                       image: 'assets/lab.jpg',
                       title: 'Laboratory',
@@ -65,7 +65,7 @@ class FrontPage extends StatelessWidget {
                     )
                   ],
                 ),
-                SizedBox(height: 10.0),
+                const SizedBox(height: 10.0),
                 CardTile(
                   image: 'assets/blood.jpg',
                   title: 'Go4Blood',

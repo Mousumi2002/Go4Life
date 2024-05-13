@@ -14,7 +14,8 @@ class SignIn extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(14.0),
-            child: TextField(
+            child: TextFormField(
+              keyboardType: TextInputType.phone,
               style: TextStyle(color: Colors.black),
               decoration: InputDecoration(
                 prefixIcon: Icon(
@@ -31,7 +32,8 @@ class SignIn extends StatelessWidget {
           SizedBox(height: 6),
           Padding(
             padding: const EdgeInsets.all(14.0),
-            child: TextField(
+            child: TextFormField(
+              keyboardType: TextInputType.number,
               style: TextStyle(color: Colors.black),
               decoration: InputDecoration(
                 prefixIcon: Icon(
