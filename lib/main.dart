@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 
-import 'package:app_go/pages/login.dart';
 import 'package:app_go/pages/splash_screen.dart';
 import 'package:app_go/provider/auth_provider.dart';
 import 'package:firebase_core/firebase_core.dart';

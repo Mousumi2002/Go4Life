@@ -11,7 +11,7 @@ class FrontPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
+        //backgroundColor: Colors.white,
         appBar: AppBarTitle(),
         body: Column(children: <Widget>[
           Container(

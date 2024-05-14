@@ -1,6 +1,5 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:app_go/nav.dart';
-import 'package:app_go/pages/login.dart';
 import 'package:app_go/pages/welcome_page.dart';
 import 'package:app_go/provider/auth_provider.dart';
 import 'package:flutter/material.dart';

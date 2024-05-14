@@ -1,9 +1,15 @@
+import 'package:app_go/pages/registration.dart';
+import 'package:app_go/provider/auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
+import 'package:provider/provider.dart';
 
+class AppBarTitle extends StatelessWidget implements PreferredSizeWidget{
+  const AppBarTitle({super.key});
 
-
-  // ignore: non_constant_identifier_names
-  AppBar AppBarTitle() {
+  @override
+  Widget build(BuildContext context) {
     return AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -20,11 +26,47 @@ import 'package:flutter/material.dart';
                 backgroundColor: Colors.white)),
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              showModalBottomSheet(context: context, builder: (context){
+                return SizedBox(
+                  width: double.infinity,
+                  height: 300,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: TextButton.icon(
+                          icon: const Icon(Icons.exit_to_app_rounded),
+                          onPressed: () async{
+                            await context.read<AuthProvider>().logOut();
+                            pushWithoutNavBar(
+                              context,
+                              MaterialPageRoute(builder: (context) => RegisterPage()));
+                          }, 
+                          label: const Text("Log out",style: TextStyle(color: Colors.black),),
+                          ),
+                      ),
+                    ],
+                  ),
+                );
+              },);
+            },
             icon: Image.asset(
               'assets/go_icon.png',
             ),
           ),
         ],
-      );
+      );;
   }
+  
+  @override
+  // TODO: implement preferredSize
+  Size get preferredSize {
+    return const Size.fromHeight(60);
+  }
+}
+
+  // ignore: non_constant_identifier_names
+  

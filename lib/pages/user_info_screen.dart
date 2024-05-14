@@ -276,6 +276,7 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
       pincode: pincodeController.text.trim(), 
       gender: genderController.text.trim(), 
       dob: dobController.text, 
+      city: cityController.text.trim(),
       createdAt: DateTime.now().toString(), 
       phoneNumber: ap.phoneNo ?? "", 
       uid: ap.uid);

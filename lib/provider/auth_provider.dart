@@ -37,6 +37,13 @@ class AuthProvider extends ChangeNotifier{
     notifyListeners();
   }
 
+  Future <void> logOut() async{
+    final SharedPreferences s = await SharedPreferences.getInstance();
+    s.setBool("is_signedin", false);
+    await FirebaseAuth.instance.signOut();
+    _isSignedIn = false;
+  }
+
   void signInWithPhone(BuildContext context, String phoneNumber) async{
     try{
       await _firebaseAuth.verifyPhoneNumber(
