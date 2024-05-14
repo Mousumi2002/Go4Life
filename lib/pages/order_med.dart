@@ -121,17 +121,69 @@ class OrderMedicinePage extends StatelessWidget {
                     ],
                   ),
                 ),
-                TextButton(
-                  onPressed: (){}, 
-                  child: const Text(
-                    "Upload Prescription"
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Align(
+                  alignment: Alignment.center,
+                  child: ElevatedButton(
+                    onPressed: (){
+                    }, 
+                    // ignore: sort_child_properties_last
+                    child: const Text('Upload Prescription'),
+                    style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                      backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 102, 156, 255)),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      ),
                     ),
                     ),
+                    ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(right: 150),
+                  child: Text(
+                    "Available Items (7 Items)",
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 10, 55, 214),
+                      fontSize: 18,
+                    ),
+                    ),
+                ),
+                const SizedBox(height: 4,),
+                Center(
+                  child: Container(
+                    height: 340,
+                    width: 360,
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 235, 242, 255),
+                        borderRadius: BorderRadius.circular(10.0)
+                    ),
+                    child: const Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 14,vertical: 12),
+                      child: Text(
+                        "List of Medicine ordered",
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Color.fromARGB(255, 10, 55, 214),
+                        ),
+                        ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
           ],
-        
       ),
     );
   }

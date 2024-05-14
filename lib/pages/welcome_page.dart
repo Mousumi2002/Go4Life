@@ -41,7 +41,6 @@ class WelcomeScreenState extends StatelessWidget {
                 CustomButton(
                   text: "Get Started", 
                 onPressed: () {
-                  ap.isSignIn == true ? Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage())):
                   Navigator.push(context, MaterialPageRoute(builder: (context)=> const RegisterPage(),),);
                 }
                 ),

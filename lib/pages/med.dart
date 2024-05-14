@@ -21,29 +21,32 @@ class SearchMed extends StatelessWidget {
                 icon: const Icon(Icons.arrow_back),
                 iconSize: 31.0,
               ),
-              Text(
+              const Text(
                 'Medicine',
                 style: TextStyle(
-                    color: const Color.fromARGB(255, 10, 55, 214),
+                    color: Color.fromARGB(255, 10, 55, 214),
                     fontSize: 22),
               )
             ],
           ),
           Container(
-            margin: EdgeInsets.all(14),
+            margin: const EdgeInsets.all(14),
             child: TextField(
-              style: TextStyle(color: const Color.fromARGB(255, 124, 124, 124)),
+              style: const TextStyle(color: Color.fromARGB(255, 124, 124, 124)),
               decoration: InputDecoration(
                 filled: true,
-                fillColor: Color.fromARGB(255, 240 , 240 , 240),
-                border: OutlineInputBorder(
+                fillColor: const Color.fromARGB(255, 240 , 240 , 240),
+                enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide.none
+                  borderSide: const BorderSide(color: Colors.transparent)
+                ),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent),
                 ),
                 hintText: "Search Medicine",
-                hintStyle: TextStyle(fontWeight: FontWeight.normal,),
-                suffixIcon: IconButton(onPressed: (){}, icon: Icon(Icons.search),),
-                suffixIconColor: Color.fromARGB(255, 124, 124, 124)
+                hintStyle: const TextStyle(fontWeight: FontWeight.normal,),
+                suffixIcon: IconButton(onPressed: (){}, icon: const Icon(Icons.search),),
+                suffixIconColor: const Color.fromARGB(255, 124, 124, 124)
               ),
             ),
           )

@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       providers: [ChangeNotifierProvider(create: (_) => AuthProvider()),],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LoginPage()//SplashPage()
+        home: SplashPage()
       ),
     );
   }

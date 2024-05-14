@@ -19,6 +19,8 @@ class AuthProvider extends ChangeNotifier{
   String get uid => _uid!;
   UserModel? _userModel;
   UserModel get userModel => userModel!;
+  late String? phoneNo;
+
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
@@ -28,9 +30,10 @@ class AuthProvider extends ChangeNotifier{
     checkSignIn();
   }
 
-  void checkSignIn() async {
+  Future <void> checkSignIn() async {
     final SharedPreferences s = await SharedPreferences.getInstance();
     _isSignedIn = s.getBool("is_signedin") ?? false;
+    print(_isSignedIn);
     notifyListeners();
   }
 
@@ -68,6 +71,7 @@ class AuthProvider extends ChangeNotifier{
       User? user = (await _firebaseAuth.signInWithCredential(creds)).user!;
       if(user != null){
         _uid = user.uid;
+        phoneNo = user.phoneNumber;
         onSuccess();
       }
       _isLoading = false;

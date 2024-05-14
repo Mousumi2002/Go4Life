@@ -1,4 +1,5 @@
 import 'package:app_go/components/custom_button.dart';
+import 'package:app_go/nav.dart';
 import 'package:app_go/pages/user_info_screen.dart';
 import 'package:app_go/utils/snackbar.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 import 'package:app_go/provider/auth_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OTPScreen extends StatefulWidget {
   final String verificationId;
@@ -130,8 +132,11 @@ class _OTPScreenState extends State<OTPScreen> {
       userOtp: userOtp,
       onSuccess:(){
         ap.checkExistingUser().then((value) async{
-          if (value == true){
+          if (value){
             //user exists in our app
+            SharedPreferences sp = await SharedPreferences.getInstance();
+            sp.setBool("is_signedin", value);
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePage()),);
         }else{
           //new user
           Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const UserInformationScreen()), (route) => false);

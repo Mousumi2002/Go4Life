@@ -1,16 +1,19 @@
 import 'package:app_go/components/custom_button.dart';
 import 'package:app_go/model/user_data.dart';
+import 'package:app_go/nav.dart';
 import 'package:app_go/provider/auth_provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-enum AutovalidateMode{
-    disable,
-    always,
-    onUserInteraction,
-  }
+// enum AutovalidateMode{
+//     disable,
+//     always,
+//     onUserInteraction,
+//   }
 class UserInformationScreen extends StatefulWidget {
   const UserInformationScreen({super.key});
 
@@ -26,6 +29,7 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
   final pincodeController = TextEditingController();
   final dobController = TextEditingController();
   final genderController = TextEditingController();
+  final cityController = TextEditingController();
 
   @override
   void dispose(){
@@ -36,6 +40,7 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
     pincodeController.dispose();
     dobController.dispose();
     genderController.dispose();
+    cityController.dispose();
   }
  
   Widget build(BuildContext context) {
@@ -81,7 +86,7 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
                   margin: const EdgeInsets.only(top: 20),
                   child: Form(
                     key: _formKey,
-                    //autovalidateMode: AutovalidateMode.onUserInteraction,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     child: Column(
                       children: [
                         //username
@@ -121,6 +126,21 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
                         validator: (String? address) { 
                           if (address!.isEmpty){
                             return 'Please Enter Your Address';
+                          } else{
+                            return null;
+                          }
+                         },
+                        ),
+                        //City
+                        label(labelText: "City"),
+                        TextField(
+                        hintText: "Kolkata", 
+                        inputType: TextInputType.number, 
+                        maxlines: 1, 
+                        controller: cityController,
+                        validator: (String? city) { 
+                          if (city!.isEmpty){
+                            return 'Please Enter Your City';
                           } else{
                             return null;
                           }
@@ -220,21 +240,27 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
         maxLines: maxlines,
         validator: (value) => validator(value),
         decoration: InputDecoration(
+          hintText: hintText,
+          hintStyle: TextStyle(color: Colors.grey.shade400),
+          alignLabelWithHint: true,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: Color.fromARGB(255, 82, 171, 244))),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(color: Color.fromARGB(255, 82, 171, 244)), 
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(color: Color.fromARGB(255, 82, 171, 244)),
+            borderSide: const BorderSide(color: Color.fromARGB(255, 82, 171, 244),
+            ),
         ),
-        hintText: hintText,
-        hintStyle: TextStyle(color: Colors.grey.shade400),
-        alignLabelWithHint: true,
-        border: InputBorder.none,
+        errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Color.fromARGB(255, 237, 53, 53)),
       ),
       ),
-      );
+      ),);
   }
 
   //store user data in database
@@ -250,9 +276,13 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
       pincode: pincodeController.text.trim(), 
       gender: genderController.text.trim(), 
       dob: dobController.text, 
-      createdAt: "", 
-      phoneNumber: "", 
-      uid: "");
-      
+      createdAt: DateTime.now().toString(), 
+      phoneNumber: ap.phoneNo ?? "", 
+      uid: ap.uid);
+    final docRef = FirebaseFirestore.instance.collection("users").doc(userModel.uid); 
+    await docRef.set(userModel.toMap());
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    sp.setBool("is_signedin", true);
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePage()),);
   }
 }
