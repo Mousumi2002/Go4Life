@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:app_go/components/appbar.dart';
 import 'package:app_go/components/information_page_doc.dart';
 import 'package:app_go/pages/clinicdetails.dart';
@@ -24,28 +26,26 @@ class DoctorInfo extends StatelessWidget {
     }
     return SafeArea(
       child: Scaffold(
-        appBar: AppBarTitle(),
+        appBar: const AppBarTitle(),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              child: Row(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(Icons.arrow_back),
-                    iconSize: 31.0,
-                  ),
-                  const Text(
-                    'Doctor',
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 10, 55, 214),
-                        fontSize: 22),
-                  ),
-                ],
-              ),
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(Icons.arrow_back),
+                  iconSize: 31.0,
+                ),
+                const Text(
+                  'Doctor',
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 10, 55, 214),
+                      fontSize: 22),
+                ),
+              ],
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 120, vertical: 14),
@@ -138,7 +138,7 @@ class DoctorInfo extends StatelessWidget {
                         ),
                       ),
                     ),
-                    InfoDoc(),
+                    const InfoDoc(),
                   ],
                 ),
               ),

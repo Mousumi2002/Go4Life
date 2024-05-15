@@ -1,7 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:app_go/pages/registration.dart';
 import 'package:app_go/provider/auth_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:provider/provider.dart';
 
@@ -43,7 +44,7 @@ class AppBarTitle extends StatelessWidget implements PreferredSizeWidget{
                             await context.read<AuthProvider>().logOut();
                             pushWithoutNavBar(
                               context,
-                              MaterialPageRoute(builder: (context) => RegisterPage()));
+                              MaterialPageRoute(builder: (context) => const RegisterPage()));
                           }, 
                           label: const Text("Log out",style: TextStyle(color: Colors.black),),
                           ),
@@ -58,11 +59,10 @@ class AppBarTitle extends StatelessWidget implements PreferredSizeWidget{
             ),
           ),
         ],
-      );;
+      );
   }
   
   @override
-  // TODO: implement preferredSize
   Size get preferredSize {
     return const Size.fromHeight(60);
   }

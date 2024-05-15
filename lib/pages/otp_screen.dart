@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:app_go/components/custom_button.dart';
 import 'package:app_go/nav.dart';
 import 'package:app_go/pages/user_info_screen.dart';
@@ -26,101 +28,99 @@ class _OTPScreenState extends State<OTPScreen> {
     return Scaffold(
       body: SafeArea(
         child: isLoading == true ? const Center(child: CircularProgressIndicator(color: Color.fromARGB(255, 9, 9, 136))):
-        Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 30),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: GestureDetector(
-                      onTap: () => Navigator.of(context).pop(),
-                      child: const Icon(Icons.arrow_back),
-                    ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 30),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: GestureDetector(
+                    onTap: () => Navigator.of(context).pop(),
+                    child: const Icon(Icons.arrow_back),
                   ),
-                  SizedBox(
-                    width: 200,
-                    height: 200,
-                    child: Image.asset("assets/moblogin.png"),
-                  ),
-                  const SizedBox(height: 15),
-                  const Text("Verification",
-                style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 10),
-                const Text("Enter the OTP send to your phone number",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w400,
-                color: Colors.grey
-                ),
-                textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 20),
-                Pinput(
-                  length: 6,
-                  showCursor: true,
-                  defaultPinTheme: PinTheme(
-                    width: 60,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        color: Colors.blue.shade400,
-                      ),
-                    ),
-                    textStyle: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  onCompleted: (value) {
-                    setState(() {
-                      otpCode = value;
-                    });
-                  },
-                ),
-                const SizedBox(height: 25,),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: 50,
-                  child: CustomButton(
-                    text: "Verify",
-                    onPressed: (){
-                      if(otpCode != null){
-                        verifyOtp(context,otpCode!);
-                      }
-                      else{
-                        showSnackBar(context, "Enter 6-digit code");
-                      }
-                    }),
-                ),
-                const SizedBox(height: 20),
-                const Text(
-                  "Didn't receive any code?",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black38
-                  ),
+                  width: 200,
+                  height: 200,
+                  child: Image.asset("assets/moblogin.png"),
                 ),
                 const SizedBox(height: 15),
-                const Text(
-                  "Resend New Code",
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 0, 58, 166)
+                const Text("Verification",
+              style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 10),
+              const Text("Enter the OTP send to your phone number",
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w400,
+              color: Colors.grey
+              ),
+              textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20),
+              Pinput(
+                length: 6,
+                showCursor: true,
+                defaultPinTheme: PinTheme(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Colors.blue.shade400,
+                    ),
+                  ),
+                  textStyle: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
-                ],
+                onCompleted: (value) {
+                  setState(() {
+                    otpCode = value;
+                  });
+                },
+              ),
+              const SizedBox(height: 25,),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: 50,
+                child: CustomButton(
+                  text: "Verify",
+                  onPressed: (){
+                    if(otpCode != null){
+                      verifyOtp(context,otpCode!);
+                    }
+                    else{
+                      showSnackBar(context, "Enter 6-digit code");
+                    }
+                  }),
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                "Didn't receive any code?",
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black38
                 ),
-            ),
+              ),
+              const SizedBox(height: 15),
+              const Text(
+                "Resend New Code",
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 0, 58, 166)
                 ),
-                ),
+              ),
+              ],
+              ),
+          ),
+              ),
                 ),
                 );
   }
@@ -140,7 +140,7 @@ class _OTPScreenState extends State<OTPScreen> {
         }else{
           //new user
           Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const UserInformationScreen()), (route) => false);
-        };
+        }
       },
       );
       }

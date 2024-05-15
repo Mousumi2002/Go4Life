@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, avoid_print
+
 import 'package:app_go/components/appbar.dart';
 import 'package:app_go/components/custom_button.dart';
 import 'package:app_go/components/search_option.dart';
@@ -15,27 +17,25 @@ class TabControl extends StatelessWidget {
       child: DefaultTabController(
         length: 3,
         child: Scaffold(
-          appBar: AppBarTitle(),
+          appBar: const AppBarTitle(),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                child: Row(children: [
-                  IconButton(
-                    onPressed: () {
-                    Navigator.pop(context);
-                  },
-                    icon: const Icon(Icons.arrow_back),
-                    iconSize: 31.0,
-                  ),
-                  const Text(
-                    'Hospital',
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 10, 55, 214),
-                        fontSize: 22),
-                  )
-                ]),
-              ),
+              Row(children: [
+                IconButton(
+                  onPressed: () {
+                  Navigator.pop(context);
+                },
+                  icon: const Icon(Icons.arrow_back),
+                  iconSize: 31.0,
+                ),
+                const Text(
+                  'Hospital',
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 10, 55, 214),
+                      fontSize: 22),
+                )
+              ]),
               DefaultTabController(
                 length: 3,
                 child: Container(

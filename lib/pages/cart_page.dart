@@ -1,8 +1,8 @@
+// ignore_for_file: sort_child_properties_last
+
 import 'package:app_go/components/appbar.dart';
 import 'package:app_go/components/item_search_result_cart.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -23,7 +23,7 @@ class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarTitle(),
+      appBar: const AppBarTitle(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,8 +75,8 @@ class _CartPageState extends State<CartPage> {
                                   ),
                                   ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 15),
+                            const Padding(
+                              padding: EdgeInsets.only(left: 15),
                               child: Text(
                                 "Pyregesic 500",
                                 style: TextStyle(
@@ -149,11 +149,11 @@ class _CartPageState extends State<CartPage> {
               ),
           ),
            Padding(
-            padding: EdgeInsets.symmetric(vertical: 5,horizontal: 16),
+            padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   "Sorted By",
                   style: TextStyle(
                   fontSize: 18,
@@ -168,35 +168,35 @@ class _CartPageState extends State<CartPage> {
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
-                        side: BorderSide(
+                        side: const BorderSide(
                           color: Color.fromARGB(255, 215, 229, 255),
                         )
                       ),
                       onPressed: buttonState ? _buttonChange : null,
-                      child: Text(
+                      child: const Text(
                         "Cost",
                         style: TextStyle(
                           color: Color.fromARGB(255, 10, 55, 214),
                         ),
                         ),
-                      color: Color.fromARGB(255, 215, 229, 255),
+                      color: const Color.fromARGB(255, 215, 229, 255),
                     ),
                     MaterialButton(
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
-                        side: BorderSide(
+                        side: const BorderSide(
                           color: Color.fromARGB(255, 215, 229, 255),
                         )
                       ),
                       onPressed: buttonState ? null : _buttonChange,
-                      child: Text(
+                      child: const Text(
                         "Time",
                         style: TextStyle(
                           color: Color.fromARGB(255, 10, 55, 214),
                         ),
                         ),
-                      color: Color.fromARGB(255, 215, 229, 255),
+                      color: const Color.fromARGB(255, 215, 229, 255),
                     ),
                   ],
                 ),
@@ -215,7 +215,7 @@ class _CartPageState extends State<CartPage> {
           //     ),
           //   ],
           // ),
-          Expanded(
+          const Expanded(
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(
@@ -242,13 +242,13 @@ class _CartPageState extends State<CartPage> {
       child: Card(
         elevation: 0,
         child: Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               _decrementButton(),//decrementButton(itemIndex)
-            Text(
+            const Text(
               "1",
               //'${numberOfItems[itemIndex]}',
               style: TextStyle(fontSize: 18.0),
@@ -269,8 +269,8 @@ class _CartPageState extends State<CartPage> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
-      child: Icon(Icons.add, color: Colors.white),
-      backgroundColor: Color.fromARGB(255, 102, 159, 255),
+      child: const Icon(Icons.add, color: Colors.white),
+      backgroundColor: const Color.fromARGB(255, 102, 159, 255),
       onPressed: () {
         setState(() {
           // numberOfItems[index]++;
@@ -293,8 +293,8 @@ Widget _decrementButton() { //Widget _decrementButton(int index)
             //numberOfItems[index]--;
           });
         },
-        child: Icon(Icons.remove, color: Colors.white),
-      backgroundColor: Color.fromARGB(255, 102, 159, 255),),
+        child: const Icon(Icons.remove, color: Colors.white),
+      backgroundColor: const Color.fromARGB(255, 102, 159, 255),),
   );
 }
 }

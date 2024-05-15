@@ -9,6 +9,7 @@ class WelcomeScreenState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     final ap = Provider.of<AuthProvider>(context,listen: false);
     return SafeArea(child: Scaffold(
       body: Center(

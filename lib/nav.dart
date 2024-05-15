@@ -66,9 +66,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ],
-      navBarBuilder: (navBarConfig) => Style6BottomNavBar(
-        navBarConfig: navBarConfig,
-      ),
+      
       backgroundColor: Colors.white, // Default is Colors.white.
       handleAndroidBackButtonPress: true, // Default is true.
       resizeToAvoidBottomInset:
@@ -80,13 +78,13 @@ class _HomePageState extends State<HomePage> {
       // ),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
-      animatedTabBuilder:
-          (context, index, animationValue, newIndex, oldIndex, child) {
-        return AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          curve: Curves.easeInOut,
-        );
-      },
+      navBarBuilder: (navBarConfig) => Style6BottomNavBar(
+        navBarConfig: navBarConfig,
+        itemAnimationProperties: const ItemAnimation(
+          duration: Duration(milliseconds: 200),
+          curve: Curves.ease,
+        ),
+      ),
       screenTransitionAnimation: const ScreenTransitionAnimation(
         // Screen transition animation on change of selected tab.
         curve: Curves.ease,

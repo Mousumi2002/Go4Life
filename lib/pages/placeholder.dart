@@ -8,24 +8,22 @@ class PlaceHolderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBarTitle(),
+        appBar: const AppBarTitle(),
         body: SafeArea(
           child: Column(
             children: <Widget>[
               Container(
                 alignment: Alignment.centerLeft,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white,
                 ),
-                padding: EdgeInsets.all(20.0),
-                child:Column(
+                padding: const EdgeInsets.all(20.0),
+                child:const Column(
                   children: <Widget>[
                     Text('Assistance',style: TextStyle(fontSize: 24.0,color: Color.fromRGBO(6, 50, 206, 0.612),))
                   ],)
               ),
-              Container(
-              child: Text('PlacehOLDER'),
-                ),
+              const Text('PlacehOLDER'),
             ]),
         ),
       );

@@ -1,13 +1,11 @@
 import 'package:app_go/pages/booking_confirm.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class InfoDoc extends StatelessWidget {
   //String time;
   // String address;
   // String? fees;
-  InfoDoc({super.key,});
+  const InfoDoc({super.key,});
 
   @override
   Widget build(BuildContext context) {

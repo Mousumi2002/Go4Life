@@ -1,11 +1,11 @@
+// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously
+
 import 'package:app_go/components/custom_button.dart';
 import 'package:app_go/model/user_data.dart';
 import 'package:app_go/nav.dart';
 import 'package:app_go/provider/auth_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -43,6 +43,7 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
     cityController.dispose();
   }
  
+  @override
   Widget build(BuildContext context) {
     
     return Scaffold(

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:app_go/components/appbar.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +29,7 @@ class _ConfirmBookDocPageState extends State<ConfirmBookDocPage> {
   // ];
     return SafeArea(
       child: Scaffold(
-        appBar: AppBarTitle(),
+        appBar: const AppBarTitle(),
         body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -53,7 +55,7 @@ class _ConfirmBookDocPageState extends State<ConfirmBookDocPage> {
                 child: Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.symmetric(vertical: 15,horizontal: 100),
+                      padding: const EdgeInsets.symmetric(vertical: 15,horizontal: 100),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: AspectRatio(
@@ -66,17 +68,17 @@ class _ConfirmBookDocPageState extends State<ConfirmBookDocPage> {
                       ),
                     ),
                     const Padding(padding: EdgeInsets.only(top: 10)),
-              Center(
+              const Center(
                 child: Text(
                   "Dr. Sneha Mallick",
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                 ),
               ),
               const SizedBox(height: 6),
-              Center(
+              const Center(
                 child: Text(
                   "Gynecologist",
-                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
                 ),
               ),
               const SizedBox(height: 15),
@@ -92,8 +94,8 @@ class _ConfirmBookDocPageState extends State<ConfirmBookDocPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 14,vertical: 10),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 14,vertical: 10),
                         child: Text(
                           "Booking Slots",
                           style: TextStyle(
@@ -103,8 +105,8 @@ class _ConfirmBookDocPageState extends State<ConfirmBookDocPage> {
                           ),
                           ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 14),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 14),
                         child: Text(
                           "For appointment, Please book the slot",
                           style: TextStyle(
@@ -115,7 +117,7 @@ class _ConfirmBookDocPageState extends State<ConfirmBookDocPage> {
                           ),
                       ),
                       Container(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         child: DecoratedBox(
                           decoration: ShapeDecoration(
                             shape: RoundedRectangleBorder(
@@ -124,7 +126,7 @@ class _ConfirmBookDocPageState extends State<ConfirmBookDocPage> {
                             color: Colors.white
                             ),
                           child: DateTimePicker(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               isDense: true,
                               contentPadding: EdgeInsets.all(15.0),
                               hintText: "Tap and select your date of booking",
@@ -155,8 +157,8 @@ class _ConfirmBookDocPageState extends State<ConfirmBookDocPage> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 14,vertical: 10),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 14,vertical: 10),
                         child: Text(
                           "This doctor is available on Monday, Tuesday, Wednesday",
                           style: TextStyle(
@@ -205,14 +207,14 @@ class _ConfirmBookDocPageState extends State<ConfirmBookDocPage> {
 
   // set up the button
   Widget okButton = TextButton(
-    child: Text("OK"),
+    child: const Text("OK"),
     onPressed: () { },
   );
 
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
-    title: Text("Confirmation Notice"),
-    content: Text("Your Booking is successful"),
+    title: const Text("Confirmation Notice"),
+    content: const Text("Your Booking is successful"),
     actions: [
       okButton,
     ],

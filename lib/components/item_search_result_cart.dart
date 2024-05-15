@@ -12,7 +12,7 @@ class CartSearchOptions extends StatelessWidget {
         color: Colors.white,
         child: InkWell(
           onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> OrderMedicinePage()));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> const OrderMedicinePage()));
             //ConfirmBookDocPage();
           },
           child: Column(

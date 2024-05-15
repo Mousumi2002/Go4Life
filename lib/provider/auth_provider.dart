@@ -1,11 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:app_go/model/user_data.dart';
 import 'package:app_go/pages/otp_screen.dart';
 import 'package:app_go/utils/snackbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -17,8 +17,8 @@ class AuthProvider extends ChangeNotifier{
   bool get isLoading => _isLoading;
   String? _uid;
   String get uid => _uid!;
-  UserModel? _userModel;
-  UserModel get userModel => userModel!;
+  // ignore: recursive_getters
+  UserModel get userModel => userModel;
   late String? phoneNo;
 
 
@@ -33,6 +33,7 @@ class AuthProvider extends ChangeNotifier{
   Future <void> checkSignIn() async {
     final SharedPreferences s = await SharedPreferences.getInstance();
     _isSignedIn = s.getBool("is_signedin") ?? false;
+    // ignore: avoid_print
     print(_isSignedIn);
     notifyListeners();
   }
@@ -76,6 +77,7 @@ class AuthProvider extends ChangeNotifier{
     try{
       PhoneAuthCredential creds = PhoneAuthProvider.credential(verificationId: verificationId, smsCode: userOtp);
       User? user = (await _firebaseAuth.signInWithCredential(creds)).user!;
+      // ignore: unnecessary_null_comparison
       if(user != null){
         _uid = user.uid;
         phoneNo = user.phoneNumber;
@@ -94,11 +96,11 @@ class AuthProvider extends ChangeNotifier{
   Future<bool> checkExistingUser() async{
     DocumentSnapshot snapshot = await _firebaseFirestore.collection("users").doc(_uid).get();
     if(snapshot.exists){
-      print("USER EXISTS");
+      //USER EXISTS
       return true;
     }
     else{
-      print("NEW USER");
+      //NEW USER
       return false;
     }
   }

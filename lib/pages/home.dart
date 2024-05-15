@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:app_go/components/appbar.dart';
 import 'package:app_go/components/card.dart';
 import 'package:app_go/pages/hos.dart';
@@ -12,7 +14,7 @@ class FrontPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         //backgroundColor: Colors.white,
-        appBar: AppBarTitle(),
+        appBar: const AppBarTitle(),
         body: Column(children: <Widget>[
           Container(
               alignment: Alignment.centerLeft,
@@ -30,49 +32,47 @@ class FrontPage extends StatelessWidget {
                 ],
               ),
               ),
-          Container(
-            child: Column(
-              children: [
-                CardTile(
-                    image: 'assets/med.jpg',
-                    title: 'Medicine',
+          Column(
+            children: [
+              CardTile(
+                  image: 'assets/med.jpg',
+                  title: 'Medicine',
+                  tap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SearchMed()),
+                    );
+                  }),
+              const SizedBox(height: 10.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CardTile1(
+                    image: 'assets/hospital.jpg',
+                    title: 'Hospital',
                     tap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SearchMed()),
-                      );
-                    }),
-                const SizedBox(height: 10.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CardTile1(
-                      image: 'assets/hospital.jpg',
-                      title: 'Hospital',
-                      tap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>  TabControl()),
-                      );
-                    }),
-                    const SizedBox(width: 4.0),
-                    CardTile1(
-                      image: 'assets/lab.jpg',
-                      title: 'Laboratory',
-                      tap: () => print('hello lab'),
-                    )
-                  ],
-                ),
-                const SizedBox(height: 10.0),
-                CardTile(
-                  image: 'assets/blood.jpg',
-                  title: 'Go4Blood',
-                  tap: () => print('Hello life'),
-                ),
-              ],
-            ),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>  TabControl()),
+                    );
+                  }),
+                  const SizedBox(width: 4.0),
+                  CardTile1(
+                    image: 'assets/lab.jpg',
+                    title: 'Laboratory',
+                    tap: () => print('hello lab'),
+                  )
+                ],
+              ),
+              const SizedBox(height: 10.0),
+              CardTile(
+                image: 'assets/blood.jpg',
+                title: 'Go4Blood',
+                tap: () => print('Hello life'),
+              ),
+            ],
           ),
         ]),
       ),

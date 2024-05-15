@@ -21,7 +21,8 @@ class CardTile extends StatelessWidget {
           Ink.image(image: AssetImage(
             image
           ),
-          colorFilter: ColorFilter.mode(Colors.black12, BlendMode.darken),
+          colorFilter: const ColorFilter.mode(Colors.black12, BlendMode.darken),
+          // ignore: sort_child_properties_last
           child: InkWell(
             onTap: tap,
           ),
@@ -33,7 +34,7 @@ class CardTile extends StatelessWidget {
             right:16,
             left:16,
             child:Text(title,
-          style: TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.white,
             fontSize: 28,
@@ -66,7 +67,8 @@ class CardTile1 extends StatelessWidget {
           Ink.image(image: AssetImage(
             image
           ),
-          colorFilter: ColorFilter.mode(Colors.black26, BlendMode.darken),
+          colorFilter: const ColorFilter.mode(Colors.black26, BlendMode.darken),
+          // ignore: sort_child_properties_last
           child: InkWell(
             onTap: tap,
           ),
@@ -79,7 +81,7 @@ class CardTile1 extends StatelessWidget {
             right:16,
             left:16,
             child:Text(title,
-          style: TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             color: Color.fromARGB(255, 255, 251, 251),
             fontSize: 26,

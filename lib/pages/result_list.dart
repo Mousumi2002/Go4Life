@@ -11,7 +11,7 @@ class ResultList extends StatelessWidget {
         child: Padding(
       padding: const EdgeInsets.all(16.0),
       child: ListView.separated(
-          physics: ScrollPhysics(),
+          physics: const ScrollPhysics(),
           itemCount: Results.results.length,
           itemBuilder: (BuildContext context, int index) {
             return DocCardResult(docName: Results.results[index].docName,image: Results.results[index].image,specialist: Results.results[index].specialist,doctorId: Results.results[index].id);

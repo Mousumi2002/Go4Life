@@ -2,7 +2,6 @@ import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:app_go/controller/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
 
 class Togglebutton extends StatefulWidget {
   const Togglebutton({super.key});
@@ -33,15 +32,15 @@ class _TogglebuttonState extends State<Togglebutton> {
                   return Center(
                       child: Text(text,
                           style: TextStyle(
-                              color: Color.lerp(Color.fromARGB(255, 10, 55, 214), Colors.white,
+                              color: Color.lerp(const Color.fromARGB(255, 10, 55, 214), Colors.white,
                                   local.animationValue,),fontSize: 12)));
                 },
-      style: ToggleStyle(
+      style: const ToggleStyle(
         borderColor: Colors.transparent,
       ),
       borderWidth: 0.0,
       styleBuilder: (i) {
-        final color = Color.fromARGB(255, 10, 55, 214);
+        const color = Color.fromARGB(255, 10, 55, 214);
         return ToggleStyle(
           backgroundColor: color.withOpacity(0.3),
           indicatorColor: color,
@@ -55,8 +54,9 @@ class _TogglebuttonState extends State<Togglebutton> {
           isClicked = !isClicked;
         });
         }*/
+        // ignore: avoid_print
         print(i);
-        return Future<dynamic>.delayed(Duration(seconds: 1));
+        return Future<dynamic>.delayed(const Duration(seconds: 1));
       },
       loading: false,
     ));
