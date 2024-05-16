@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:app_go/model/user_data.dart';
 import 'package:app_go/pages/otp_screen.dart';
 import 'package:app_go/utils/snackbar.dart';

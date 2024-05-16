@@ -5,7 +5,6 @@ import 'package:app_go/components/card.dart';
 import 'package:app_go/pages/hos.dart';
 import 'package:app_go/pages/med.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class FrontPage extends StatelessWidget {
   const FrontPage({super.key});
