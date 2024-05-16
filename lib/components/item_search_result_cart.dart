@@ -52,7 +52,7 @@ class CartSearchOptions extends StatelessWidget {
                         ),
                         SizedBox(height: 4),
                         Text(
-                          'Estimated Delivery :',
+                          'Estimated Delivery : 1D',
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w300,
