@@ -49,6 +49,7 @@ dependencies:
   pinput: ^4.0.0
   cloud_firestore: ^4.17.2
   date_time_picker: ^2.1.0
+  cached_network_image: ^3.3.1
 
 dev_dependencies:
   flutter_test:
@@ -60,6 +61,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  icons_launcher: ^2.1.7
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

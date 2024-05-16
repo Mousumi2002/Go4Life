@@ -1,20 +1,29 @@
 import 'package:app_go/pages/cart_page.dart';
 import 'package:app_go/pages/home.dart';
 import 'package:app_go/pages/placeholder.dart';
+import 'package:app_go/provider/auth_provider.dart';
+import 'package:app_go/provider/cart_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
-
 }
 
 class _HomePageState extends State<HomePage> {
+  PersistentTabController controller = PersistentTabController(initialIndex: 0);
 
-  PersistentTabController controller =PersistentTabController(initialIndex: 0);
+  @override
+  void initState() {
+    final uid = context.read<AuthProvider>().uid;
+    context.read<CartProvider>().addCartItemListener(uid);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return PersistentTabView(
@@ -66,7 +75,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ],
-      
       backgroundColor: Colors.white, // Default is Colors.white.
       handleAndroidBackButtonPress: true, // Default is true.
       resizeToAvoidBottomInset:

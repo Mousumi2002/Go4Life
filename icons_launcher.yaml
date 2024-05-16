@@ -1,0 +1,14 @@
+# This file contains yaml config for generating launcher icons for Android and iOS.
+icons_launcher:
+  image_path: "assets/go_icon.png"
+  platforms:
+    android:
+      enable: true
+    ios:
+      enable: true
+    macos:
+      enable: true
+    web:
+      enable: true
+    windows:
+      enable: true

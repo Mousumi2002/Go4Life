@@ -8,8 +8,9 @@ class UserModel{
   String createdAt;
   String phoneNumber;
   String uid;
+  String city;
 
-  UserModel({required this.name, required this.email, required this.address, required this.pincode, required this.gender, required this.dob, required this.createdAt, required this.phoneNumber,required this.uid, required city});
+  UserModel({required this.name, required this.email, required this.address, required this.pincode, required this.gender, required this.dob, required this.createdAt, required this.phoneNumber,required this.uid, required this.city});
 
   //from map
   factory UserModel.fromMap(Map<String, dynamic> map){
@@ -37,7 +38,8 @@ class UserModel{
       "gender" : gender,
       "dob" : dob,
       "createdAt" : createdAt,
-      "phoneNumber" : phoneNumber
+      "phoneNumber" : phoneNumber,
+      "city" : city,
   };
   }
 }

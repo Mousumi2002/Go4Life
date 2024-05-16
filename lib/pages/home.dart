@@ -5,6 +5,7 @@ import 'package:app_go/components/card.dart';
 import 'package:app_go/pages/hos.dart';
 import 'package:app_go/pages/med.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class FrontPage extends StatelessWidget {
   const FrontPage({super.key});
@@ -45,33 +46,46 @@ class FrontPage extends StatelessWidget {
                     );
                   }),
               const SizedBox(height: 10.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CardTile1(
-                    image: 'assets/hospital.jpg',
-                    title: 'Hospital',
-                    tap: () {
+              CardTile(
+                  image: 'assets/hospital.jpg',
+                  title: 'Hospital',
+                  tap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>  TabControl()),
+                          builder: (context) => TabControl()),
                     );
                   }),
-                  const SizedBox(width: 4.0),
-                  CardTile1(
-                    image: 'assets/lab.jpg',
-                    title: 'Laboratory',
-                    tap: () => print('hello lab'),
-                  )
-                ],
-              ),
               const SizedBox(height: 10.0),
               CardTile(
-                image: 'assets/blood.jpg',
-                title: 'Go4Blood',
-                tap: () => print('Hello life'),
-              ),
+                  image: 'assets/lab.jpg',
+                  title: 'Laboratory',
+                  tap: () {
+                    print('hello lab');
+                  }),   
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     CardTile1(
+              //       image: 'assets/hospital.jpg',
+              //       title: 'Hospital',
+              //       tap: () {
+              //       Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //             builder: (context) =>  TabControl()),
+              //       );
+              //     }),
+              //     const SizedBox(width: 4.0),
+              //     CardTile1(
+              //       image: 'assets/lab.jpg',
+              //       title: 'Laboratory',
+              //       tap: () => print('hello lab'),
+              //     )
+              //   ],
+              // ),
+              const SizedBox(height: 10.0),
+              
             ],
           ),
         ]),
