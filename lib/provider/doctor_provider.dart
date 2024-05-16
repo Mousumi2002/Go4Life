@@ -67,6 +67,7 @@ class DoctorProvider extends ChangeNotifier {
 
     _filteredDoctors =
         listForSearch.where((element) => element.name.toLowerCase().contains(query.toLowerCase())).toList();
+    _isFilterActive = true;
     notifyListeners();
 
   }
