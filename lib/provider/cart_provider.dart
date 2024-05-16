@@ -1,6 +1,8 @@
 import 'package:app_go/model/cart_item.dart';
+import 'package:app_go/model/medicine_item.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 
 class CartProvider extends ChangeNotifier {
   List<CartItem> _cartItems = [];
@@ -45,4 +47,24 @@ class CartProvider extends ChangeNotifier {
   }
 
   List<Map<String, dynamic>> get cartItemsMap => _cartItems.map((e) => e.toMap()).toList();
+
+  CartItem? getCartItemFromName(String name){
+    return _cartItems.firstWhereOrNull((element) => element.name == name);
+  }
+
+  void addItem(MedicineItem medicineItem, String uid) {
+    final index = _cartItems.indexWhere((element) => element.name == medicineItem.name);
+    if (index == -1) {
+      _cartItems.add(CartItem(
+        name: medicineItem.name,
+        quantity: 1,));
+    }
+    else{
+      _cartItems[index]= CartItem(
+        name: medicineItem.name,
+        quantity: _cartItems[index].quantity + 1);
+    }
+    FirebaseFirestore.instance.collection('cart').doc(uid).update({
+      'items': cartItemsMap,});
+  }
 }

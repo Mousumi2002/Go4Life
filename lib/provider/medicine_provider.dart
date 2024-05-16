@@ -4,10 +4,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class MedicineProvider extends ChangeNotifier{
-  List <MedicineItem> _medicines = [];
+  final List <MedicineItem> _medicines = [];
   List <MedicineItem> get medicines => _medicines;
 
-  addMedicineItemListener(String uid){
+  addMedicineItemListener(){
     FirebaseFirestore.instance.collection('medications').snapshots().listen((event) {
       _medicines.clear();
       final docs = event.docs;

@@ -4,7 +4,9 @@ import 'package:app_go/components/appbar.dart';
 import 'package:app_go/components/item_search_result_cart.dart';
 import 'package:app_go/model/cart_item.dart';
 import 'package:app_go/provider/auth_provider.dart';
+import 'package:app_go/provider/vendor_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/cart_provider.dart';
@@ -30,6 +32,9 @@ class _CartPageState extends State<CartPage> {
     final cartProvider = Provider.of<CartProvider>(context);
     //This stores the cart items from firebase
     final cartItems = cartProvider.cartItems;
+    final vendorProvider = Provider.of<VendorProvider>(context);
+    //This stores the cart items from firebase
+    final vendorItems = vendorProvider.vendors;
     return Scaffold(
       appBar: const AppBarTitle(),
       body: Column(
@@ -105,8 +110,7 @@ class _CartPageState extends State<CartPage> {
                                       ),
                                     ],
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 15),
+                                  Center(
                                     child: Text(
                                       item.name,
                                       style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
@@ -205,31 +209,17 @@ class _CartPageState extends State<CartPage> {
           //     ),
           //   ],
           // ),
-          const Expanded(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  CartSearchOptions(),
-                  SizedBox(
-                    height: 6,
-                  ),
-                  CartSearchOptions(),
-                  SizedBox(
-                    height: 6,
-                  ),
-                  CartSearchOptions(),
-                  SizedBox(
-                    height: 6,
-                  ),
-                  CartSearchOptions(),
-                  SizedBox(
-                    height: 6,
-                  ),
-                  CartSearchOptions(),
-                ],
-              ),
-            ),
+
+          ListView.separated(
+            shrinkWrap: true,
+            separatorBuilder: 
+            (context, index) => SizedBox(height:  6,),
+            itemCount: vendorItems.length,
+            itemBuilder: (context, index) {
+              final item = vendorItems[index];
+              return CartSearchOptions(vendor: item);
+            },
+            
           )
         ],
       ),

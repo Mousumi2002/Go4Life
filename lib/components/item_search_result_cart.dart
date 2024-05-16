@@ -1,9 +1,12 @@
+import 'package:app_go/model/vendor_item.dart';
 import 'package:app_go/pages/order_med.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 
 class CartSearchOptions extends StatelessWidget {
-  const CartSearchOptions({super.key});
+  final VendorItem vendor;
+  const CartSearchOptions({super.key, required this.vendor});
 
   @override
   Widget build(BuildContext context) {
@@ -29,20 +32,22 @@ class CartSearchOptions extends StatelessWidget {
                     padding: const EdgeInsets.all(8),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
-                      child: const Image(
-                        image: AssetImage('assets/Apollo.png'),
+                      child: CachedNetworkImage(
+                        width: 71,
+                        height: 71,
+                        imageUrl: vendor.picture,
                         fit: BoxFit.cover,
                       ),
                     ),
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Apollo Pharmacy',
+                          vendor.name,
                           style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black87),
                         ),
                         SizedBox(height: 4),
@@ -56,7 +61,7 @@ class CartSearchOptions extends StatelessWidget {
                         ),
                         SizedBox(height: 4),
                         Text(
-                          'Total Items :',
+                          'Total Items : ${vendor.medicines.length}',
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w300,
@@ -69,9 +74,10 @@ class CartSearchOptions extends StatelessWidget {
                   const SizedBox(
                     width: 50,
                   ),
-                  const Expanded(
+                  Expanded(
                     child: Text(
-                      'Rs 150',
+                      vendor.medicines[0]['currency'] +
+                      vendor.medicines[0]['price'].toString(),
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.w500,
