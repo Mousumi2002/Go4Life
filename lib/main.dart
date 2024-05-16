@@ -4,6 +4,7 @@ import 'package:app_go/firebase_options.dart';
 import 'package:app_go/pages/splash_screen.dart';
 import 'package:app_go/provider/auth_provider.dart';
 import 'package:app_go/provider/cart_provider.dart';
+import 'package:app_go/provider/medicine_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => CartProvider()),
+        ChangeNotifierProvider(create: (_) => MedicineProvider()),
       ],
       child: MaterialApp(debugShowCheckedModeBanner: false, home: SplashPage()),
     );
