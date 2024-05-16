@@ -1,100 +1,123 @@
+import 'package:app_go/model/doctor.dart';
 import 'package:app_go/pages/booking_confirm.dart';
+import 'package:app_go/utils/int_to_day.dart';
 import 'package:flutter/material.dart';
 
 class InfoDoc extends StatelessWidget {
-  //String time;
-  // String address;
-  // String? fees;
-  const InfoDoc({super.key,});
+  final Doctor doctor;
+
+  const InfoDoc({
+    super.key,
+    required this.doctor,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
+    final availableDays = doctor.availableDays.map((e) => intToDay(e)).join(', ');
+    return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          const Row(
+          Row(
             children: [
-              // IconTheme(
-              //   data: IconThemeData(color: Color.fromARGB(255, 10, 55, 214)), 
-              //   child: Icon(),
-              //   ),
-              Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Icon(Icons.calendar_month_rounded,color: Color.fromARGB(255, 10, 55, 214),size: 20,)
+              const Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Icon(
+                    Icons.calendar_month_rounded,
+                    color: Color.fromARGB(255, 10, 55, 214),
+                    size: 20,
+                  )),
+              Text(
+                availableDays,
+                style: const TextStyle(fontSize: 14),
               ),
-              Text("Mon, Wed, Tue",style: TextStyle(fontSize: 14),),
             ],
           ),
           //SizedBox(height: 0.2),
-          const Row(
+          Row(
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(10.0),
-                child: Icon(Icons.access_time,color: Color.fromARGB(255, 10, 55, 214),size: 20,)
+                child: Icon(
+                  Icons.access_time,
+                  color: Color.fromARGB(255, 10, 55, 214),
+                  size: 20,
+                ),
               ),
-              Text("6 PM - 7 PM",style: TextStyle(fontSize: 14),),
+              Text(
+                doctor.availableTime,
+                style: const TextStyle(fontSize: 14),
+              ),
             ],
           ),
           const SizedBox(height: 8),
-          const Row(
+          Row(
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(10.0),
-                child: Icon(Icons.location_on,color: Color.fromARGB(255, 10, 55, 214),size: 25,)
+                child: Icon(
+                  Icons.location_on,
+                  color: Color.fromARGB(255, 10, 55, 214),
+                  size: 25,
+                ),
               ),
               Expanded(
                 child: Text(
-                  "B 400, Prince Anwar Shah Rd, Lake Gardens,Tollygunge, Kolkata, West Bengal 700045",
+                  doctor.location,
                   //overflow: TextOverflow.clip,
                   maxLines: 4,
-                  style: TextStyle(
-                    fontSize: 14
-                    ),
-                    ),
+                  style: const TextStyle(fontSize: 14),
+                ),
               ),
             ],
           ),
           const SizedBox(height: 6),
-          const Row(
+          Row(
             children: [
-              Align(
+              const Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
                   padding: EdgeInsets.all(10.0),
-                  child: Icon(Icons.currency_rupee,color: Color.fromARGB(255, 10, 55, 214),size: 25,)
+                  child: Icon(
+                    Icons.currency_rupee,
+                    color: Color.fromARGB(255, 10, 55, 214),
+                    size: 25,
+                  ),
                 ),
               ),
               Text(
-                "500",
+                doctor.charge,
                 //overflow: TextOverflow.clip,
-                style: TextStyle(
-                  fontSize: 14
-                  ),
-                  ),
+                style: const TextStyle(fontSize: 14),
+              ),
             ],
           ),
-          //SizedBox(height: 2,),
           SizedBox(
             height: 40,
             child: Align(
               alignment: Alignment.bottomRight,
               child: ElevatedButton(
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const ConfirmBookDocPage()));
-                }, 
-                // ignore: sort_child_properties_last
-                child: const Text('Book Now'),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ConfirmBookDocPage(
+                        doctor: doctor,
+                      ),
+                    ),
+                  );
+                },
                 style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                   backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 102, 156, 255)),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
                   ),
                 ),
-                ),
+                child: const Text('Book Now'),
+              ),
             ),
           ),
         ],

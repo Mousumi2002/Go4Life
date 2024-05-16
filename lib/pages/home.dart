@@ -2,9 +2,9 @@
 
 import 'package:app_go/components/appbar.dart';
 import 'package:app_go/components/card.dart';
-import 'package:app_go/pages/hos.dart';
 import 'package:app_go/pages/med.dart';
 import 'package:flutter/material.dart';
+import 'package:app_go/pages/hospital_page.dart';
 
 class FrontPage extends StatelessWidget {
   const FrontPage({super.key});
@@ -52,7 +52,7 @@ class FrontPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => TabControl()),
+                          builder: (context) => HospitalPage()),
                     );
                   }),
               const SizedBox(height: 10.0),

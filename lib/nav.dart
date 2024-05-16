@@ -3,6 +3,7 @@ import 'package:app_go/pages/home.dart';
 import 'package:app_go/pages/placeholder.dart';
 import 'package:app_go/provider/auth_provider.dart';
 import 'package:app_go/provider/cart_provider.dart';
+import 'package:app_go/provider/doctor_provider.dart';
 import 'package:app_go/provider/medicine_provider.dart';
 import 'package:app_go/provider/vendor_provider.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,7 @@ class _HomePageState extends State<HomePage> {
     context.read<CartProvider>().addCartItemListener(uid);
     context.read<MedicineProvider>().addMedicineItemListener();
     context.read<VendorProvider>().addVendorItemListener();
+    context.read<DoctorProvider>().addDoctorsListener();
     super.initState();
   }
 
