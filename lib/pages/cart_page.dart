@@ -6,7 +6,6 @@ import 'package:app_go/model/cart_item.dart';
 import 'package:app_go/provider/auth_provider.dart';
 import 'package:app_go/provider/vendor_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/cart_provider.dart';
@@ -213,7 +212,7 @@ class _CartPageState extends State<CartPage> {
           ListView.separated(
             shrinkWrap: true,
             separatorBuilder: 
-            (context, index) => SizedBox(height:  6,),
+            (context, index) => const SizedBox(height:  6,),
             itemCount: vendorItems.length,
             itemBuilder: (context, index) {
               final item = vendorItems[index];

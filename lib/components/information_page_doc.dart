@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 
 class InfoDoc extends StatelessWidget {
   final Doctor doctor;
+  final String? selectedClinicAddress;
 
   const InfoDoc({
     super.key,
     required this.doctor,
+    this.selectedClinicAddress,
   });
 
   @override
@@ -63,7 +65,7 @@ class InfoDoc extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  doctor.location,
+                  selectedClinicAddress ?? 'No Address' ,
                   //overflow: TextOverflow.clip,
                   maxLines: 4,
                   style: const TextStyle(fontSize: 14),

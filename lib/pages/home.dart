@@ -52,7 +52,7 @@ class FrontPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => HospitalPage()),
+                          builder: (context) => const HospitalPage()),
                     );
                   }),
               const SizedBox(height: 10.0),

@@ -1,19 +1,19 @@
 //utility function to convert integer to day
 String intToDay(int day) {
   switch (day) {
-    case 0:
-      return 'Mon';
     case 1:
-      return 'Tue';
+      return 'Mon';
     case 2:
-      return 'Wed';
+      return 'Tue';
     case 3:
-      return 'Thu';
+      return 'Wed';
     case 4:
-      return 'Fri';
+      return 'Thu';
     case 5:
-      return 'Sat';
+      return 'Fri';
     case 6:
+      return 'Sat';
+    case 7:
       return 'Sun';
     default:
       return '';

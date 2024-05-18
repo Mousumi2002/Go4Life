@@ -7,7 +7,7 @@ class Doctor {
   String availableTime;
   String location;
   String charge;
-
+  List <dynamic> clinics;
   Doctor({
     required this.id,
     required this.name,
@@ -17,6 +17,7 @@ class Doctor {
     required this.availableTime,
     required this.location,
     required this.charge,
+    required this.clinics,
   });
 
   //from map
@@ -30,6 +31,7 @@ class Doctor {
       availableTime: map['availableTime'] ?? '',
       location: map['location'] ?? '',
       charge: map['charge'] ?? '',
+      clinics: map['clinics'] ??  [],
     );
   }
 
@@ -44,6 +46,7 @@ class Doctor {
       "available_time": availableTime,
       "location": location,
       "charge": charge,
+      "clinics": clinics
     };
   }
 }

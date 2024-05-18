@@ -5,9 +5,7 @@ import 'package:app_go/model/user_data.dart';
 import 'package:app_go/nav.dart';
 import 'package:app_go/provider/auth_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -201,7 +199,7 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
                             children: [
                               Expanded(
                                 child: RadioListTile<String>(
-                                  title: Text(
+                                  title: const Text(
                                     'Male',
                                     style: TextStyle(
                                       color: Colors.black,
@@ -218,7 +216,7 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
                               ),
                               Expanded(
                                 child: RadioListTile<String>(
-                                  title: Text(
+                                  title: const Text(
                                     'Female',
                                     style: TextStyle(
                                       color: Colors.black,
@@ -242,9 +240,10 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    SizedBox(
+                    Container(
+                      margin: const EdgeInsets.all(10.0),
                       height: 50,
-                      width: MediaQuery.of(context).size.width * 0.70,
+                      width: MediaQuery.of(context).size.width * 0.80,
                       child: CustomButton(
                         text: "Continue",
                         onPressed: () => storeData(_formKey),
@@ -328,7 +327,7 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
     }
     if (selectedGender == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text(
             'Please select your gender',
           ),

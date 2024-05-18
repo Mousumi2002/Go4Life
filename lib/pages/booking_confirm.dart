@@ -110,11 +110,10 @@ class _ConfirmBookDocPageState extends State<ConfirmBookDocPage> {
                               onTap: () async {
                                 selectedDate = await showDatePicker(
                                   context: context,
-                                  initialDate: DateTime.now(),
                                   firstDate: DateTime.now(),
                                   lastDate: DateTime(2100),
                                   selectableDayPredicate: (DateTime dateTime) =>
-                                  !widget.doctor.availableDays.contains(dateTime.weekday),
+                                  widget.doctor.availableDays.contains(dateTime.weekday),
                                 );
                               },
                               child: Container(

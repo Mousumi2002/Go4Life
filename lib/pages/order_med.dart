@@ -1,11 +1,16 @@
 import 'package:app_go/components/appbar.dart';
+import 'package:app_go/model/vendor_item.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class OrderMedicinePage extends StatelessWidget {
-  const OrderMedicinePage({super.key});
+  //final CartItem item;
+  final VendorItem vendor;
+  const OrderMedicinePage({super.key , required this.vendor});
 
   @override
   Widget build(BuildContext context) {
+    final medicines = vendor.medicines;
     return Scaffold(
       appBar: const AppBarTitle(),
       body: Column(
@@ -38,29 +43,31 @@ class OrderMedicinePage extends StatelessWidget {
                   padding: const EdgeInsets.all(8),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
-                    child: const Image(
-                      image: AssetImage('assets/Apollo.png'),
+                    child: CachedNetworkImage(
+                      height: 71,
+                      width: 71,
+                      imageUrl: vendor.picture,
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Apollo Pharmacy',
-                        style: TextStyle(
+                        vendor.name,
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
                           color: Colors.black87
                         ),
                         ),
-                      SizedBox(height: 8),
-                      Text(
-                        'Estimated Delivery :',
+                      const SizedBox(height: 8),
+                      const Text(
+                        'Estimated Delivery : 1D',
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w300,
@@ -142,11 +149,11 @@ class OrderMedicinePage extends StatelessWidget {
                     ),
                     ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(right: 150),
+                Padding(
+                  padding: const EdgeInsets.only(right: 150),
                   child: Text(
-                    "Available Items (7 Items)",
-                    style: TextStyle(
+                    "Available Items (${medicines.length})",
+                    style: const TextStyle(
                       color: Color.fromARGB(255, 10, 55, 214),
                       fontSize: 18,
                     ),
@@ -161,11 +168,11 @@ class OrderMedicinePage extends StatelessWidget {
                         color: const Color.fromARGB(255, 235, 242, 255),
                         borderRadius: BorderRadius.circular(10.0)
                     ),
-                    child: const Column(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Padding(
+                        const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 14,vertical: 12),
                       child: Text(
                         "List of Medicine ordered",
@@ -175,6 +182,26 @@ class OrderMedicinePage extends StatelessWidget {
                           color: Color.fromARGB(255, 10, 55, 214),
                         ),
                         ),
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child:
+                                  ListView.builder(
+                                    padding: const EdgeInsets.symmetric(vertical:8,horizontal: 12),
+                                  itemBuilder: (context, index) {
+                                    final item = medicines[index]['name'];
+                                    return Text(item.toString(),style: const TextStyle(fontSize: 16),);
+                                  },
+                                  shrinkWrap: true,
+                                  itemCount: medicines.length,
+                                  ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 60),
+                                child: Text('Units: ',style: TextStyle(fontSize: 16,color: Colors.grey.shade700),),
+                              )
+                          ],
                         ),
                       ],
                     ),

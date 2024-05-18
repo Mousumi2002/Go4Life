@@ -18,7 +18,7 @@ class CartSearchOptions extends StatelessWidget {
           onTap: () {
             pushScreen(
               context,
-              screen: const OrderMedicinePage(),
+              screen: OrderMedicinePage(vendor: vendor,),
               withNavBar: true,
             );
             // Navigator.push(context, MaterialPageRoute(builder: (context)=> const OrderMedicinePage()));
@@ -41,17 +41,17 @@ class CartSearchOptions extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           vendor.name,
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black87),
+                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black87),
                         ),
-                        SizedBox(height: 4),
-                        Text(
+                        const SizedBox(height: 4),
+                        const Text(
                           'Estimated Delivery : 1D',
                           style: TextStyle(
                             fontSize: 14,
@@ -59,10 +59,10 @@ class CartSearchOptions extends StatelessWidget {
                             color: Color.fromARGB(255, 121, 121, 121),
                           ),
                         ),
-                        SizedBox(height: 4),
+                        const SizedBox(height: 4),
                         Text(
                           'Total Items : ${vendor.medicines.length}',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w300,
                             color: Color.fromARGB(255, 121, 121, 121),
@@ -78,7 +78,7 @@ class CartSearchOptions extends StatelessWidget {
                     child: Text(
                       vendor.medicines[0]['currency'] +
                       vendor.medicines[0]['price'].toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.w500,
                       ),

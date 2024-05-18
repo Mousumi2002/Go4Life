@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 class VendorProvider extends ChangeNotifier{
   final List <VendorItem> _vendors = [];
   List <VendorItem> get vendors => _vendors;
+  final List <VendorItem> _medicines = [];
+  List <VendorItem> get medicines => _medicines;
+
 
   addVendorItemListener(){
     FirebaseFirestore.instance.collection('vendors').snapshots().listen((event) {

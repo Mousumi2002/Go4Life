@@ -1,4 +1,3 @@
-import 'package:app_go/model/cart_item.dart';
 import 'package:app_go/model/medicine_item.dart';
 import 'package:app_go/pages/cart_page.dart';
 import 'package:app_go/provider/auth_provider.dart';
@@ -56,7 +55,7 @@ class MedCard extends StatelessWidget {
                   if(cartItem == null)
                   const Spacer()
                   else
-                  SizedBox(width: 12,),
+                  const SizedBox(width: 12,),
                   cartItem == null ? 
                   SizedBox(
                     width: 91,
@@ -69,7 +68,7 @@ class MedCard extends StatelessWidget {
                       ),
                       style: IconButton.styleFrom(
                         foregroundColor: Colors.white,
-                        backgroundColor: Color.fromARGB(255, 102, 159, 255),
+                        backgroundColor: const Color.fromARGB(255, 102, 159, 255),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                           

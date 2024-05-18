@@ -3,22 +3,25 @@
 import 'package:app_go/components/appbar.dart';
 import 'package:app_go/components/information_page_doc.dart';
 import 'package:app_go/model/doctor.dart';
-import 'package:app_go/pages/clinicdetails.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class DoctorInfo extends StatelessWidget {
+class DoctorInfo extends StatefulWidget {
   final Doctor doctor;
 
   const DoctorInfo({super.key, required this.doctor});
 
   @override
+  State<DoctorInfo> createState() => _DoctorInfoState();
+}
+
+class _DoctorInfoState extends State<DoctorInfo> {
+  String? selectedClinicAddress;
+  @override
   Widget build(BuildContext context) {
-    var clinicMap = <String, String>{};
-    for (var clinic in ClinicList.clicName) {
-      clinicMap[clinic.name] = clinic.id;
-    }
+    final clinicMap = widget.doctor.clinics.map((e) => e['name'].toString()).toList();
     return SafeArea(
       child: Scaffold(
         appBar: const AppBarTitle(),
@@ -47,7 +50,7 @@ class DoctorInfo extends StatelessWidget {
                 child: AspectRatio(
                   aspectRatio: 1.2,
                   child: CachedNetworkImage(
-                    imageUrl: doctor.image,
+                    imageUrl: widget.doctor.image,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -58,14 +61,14 @@ class DoctorInfo extends StatelessWidget {
             ),
             Center(
               child: Text(
-                doctor.name,
+                widget.doctor.name,
                 style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
             ),
             const SizedBox(height: 6),
             Center(
               child: Text(
-                doctor.specialisation,
+                widget.doctor.specialisation,
                 style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
               ),
             ),
@@ -93,7 +96,7 @@ class DoctorInfo extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(0.2),
                         child: DropdownSearch<String>(
-                          items: clinicMap.keys.toList(),
+                          items: clinicMap,
                           popupProps: PopupProps.menu(
                             constraints: const BoxConstraints(maxHeight: 220),
                             menuProps: MenuProps(
@@ -122,15 +125,21 @@ class DoctorInfo extends StatelessWidget {
                             ),
                           ),
                           onChanged: (value) {
-                            print(ClinicList.getDetailsById(clinicMap[value]).address);
-                            print((clinicMap[value]));
+                            final clinic = widget.doctor.clinics.firstWhereOrNull((element) => element['name']== value);
+                            if(clinic == null) {
+                              return;
+                            }
+                            setState(() {
+                              selectedClinicAddress = clinic['address'];
+                            });
                           },
                           selectedItem: 'All',
                         ),
                       ),
                     ),
                     InfoDoc(
-                      doctor: doctor,
+                      doctor: widget.doctor,
+                      selectedClinicAddress: selectedClinicAddress,
                     ),
                   ],
                 ),
