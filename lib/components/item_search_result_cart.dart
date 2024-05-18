@@ -18,7 +18,9 @@ class CartSearchOptions extends StatelessWidget {
           onTap: () {
             pushScreen(
               context,
-              screen: OrderMedicinePage(vendor: vendor,),
+              screen: OrderMedicinePage(
+                vendor: vendor,
+              ),
               withNavBar: true,
             );
             // Navigator.push(context, MaterialPageRoute(builder: (context)=> const OrderMedicinePage()));
@@ -48,7 +50,10 @@ class CartSearchOptions extends StatelessWidget {
                       children: [
                         Text(
                           vendor.name,
-                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black87),
+                          style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black87),
                         ),
                         const SizedBox(height: 4),
                         const Text(
@@ -77,7 +82,7 @@ class CartSearchOptions extends StatelessWidget {
                   Expanded(
                     child: Text(
                       vendor.medicines[0]['currency'] +
-                      vendor.medicines[0]['price'].toString(),
+                          getPrice(vendor.medicines).toString(),
                       style: const TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.w500,
@@ -92,5 +97,13 @@ class CartSearchOptions extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  int getPrice(List medicines) {
+    num price = 0;
+    for (var medicine in medicines) {
+      price += medicine['quantity'] * medicine['price'];
+    }
+    return price.toInt();
   }
 }
