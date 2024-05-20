@@ -1,6 +1,7 @@
 import 'package:app_go/components/appbar.dart';
 import 'package:app_go/components/med_item_card.dart';
 import 'package:app_go/provider/medicine_provider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,6 +13,7 @@ class SearchMed extends StatelessWidget {
     final medProvider = Provider.of<MedicineProvider>(context);
     //This stores the cart items from firebase
     final medItems = medProvider.medicines;
+    final searchItems = medProvider.medicinesSearch;
     return Scaffold(
       appBar: const AppBarTitle(),
       body: Column(
@@ -29,9 +31,7 @@ class SearchMed extends StatelessWidget {
               ),
               const Text(
                 'Medicine',
-                style: TextStyle(
-                    color: Color.fromARGB(255, 10, 55, 214),
-                    fontSize: 22),
+                style: TextStyle(color: Color.fromARGB(255, 10, 55, 214), fontSize: 22),
               )
             ],
           ),
@@ -39,29 +39,37 @@ class SearchMed extends StatelessWidget {
             margin: const EdgeInsets.all(14),
             child: TextField(
               style: const TextStyle(color: Color.fromARGB(255, 124, 124, 124)),
+              onChanged: (value) {
+                medProvider.searchMedicine(value);
+              },
               decoration: InputDecoration(
-                filled: true,
-                fillColor: const Color.fromARGB(255, 240 , 240 , 240),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: const BorderSide(color: Colors.transparent)
-                ),
-                focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.transparent),
-                ),
-                hintText: "Search Medicine",
-                hintStyle: const TextStyle(fontWeight: FontWeight.normal,),
-                suffixIcon: IconButton(onPressed: (){}, icon: const Icon(Icons.search),),
-                suffixIconColor: const Color.fromARGB(255, 124, 124, 124)
-              ),
+                  filled: true,
+                  fillColor: const Color.fromARGB(255, 240, 240, 240),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Colors.transparent)),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent),
+                  ),
+                  hintText: "Search Medicine",
+                  hintStyle: const TextStyle(
+                    fontWeight: FontWeight.normal,
+                  ),
+                  suffixIcon: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.search),
+                  ),
+                  suffixIconColor: const Color.fromARGB(255, 124, 124, 124)),
             ),
           ),
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: medItems.length,
-            itemBuilder: (context, index){
-              return  MedCard(medicineItem: medItems[index]);
-            },
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: searchItems.isNotEmpty ? searchItems.length : medItems.length,
+              itemBuilder: (context, index) {
+                final item = searchItems.isNotEmpty ? searchItems[index] : medItems[index];
+                return MedCard(medicineItem: item);
+              },
+            ),
           ),
         ],
       ),

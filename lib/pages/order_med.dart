@@ -223,6 +223,34 @@ class OrderMedicinePage extends StatelessWidget {
                             ),
                           ],
                         ),
+                        Expanded(
+                          child: SizedBox(
+                            height: 100,
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    showAlertDialog(context);
+                                  },
+                                  // ignore: sort_child_properties_last
+                                  child: const Text('Book Now'),
+                                  style: ButtonStyle(
+                                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                                    backgroundColor:
+                                    MaterialStateProperty.all<Color>(const Color.fromARGB(255, 102, 156, 255)),
+                                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10.0),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -260,5 +288,25 @@ class OrderMedicinePage extends StatelessWidget {
 
     if (outOfStock.isEmpty) return '';
     return outOfStock;
+  }
+  showAlertDialog(BuildContext context) {
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Confirmation Notice"),
+          content: const Text("Your Booking is successful"),
+          actions: [
+            TextButton(
+              child: const Text("OK"),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            )
+          ],
+        );
+      },
+    );
   }
 }
