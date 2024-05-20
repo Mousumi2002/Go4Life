@@ -275,24 +275,26 @@ class QuantityAdjustButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(isIncrement ? 0 : 4),
-          topLeft: Radius.circular(isIncrement ? 0 : 4),
-          bottomRight: Radius.circular(isIncrement ? 4 : 0),
-          topRight: Radius.circular(isIncrement ? 4 : 0),
+    return Expanded(
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(isIncrement ? 0 : 4),
+            topLeft: Radius.circular(isIncrement ? 0 : 4),
+            bottomRight: Radius.circular(isIncrement ? 4 : 0),
+            topRight: Radius.circular(isIncrement ? 4 : 0),
+          ),
+          color: const Color.fromARGB(255, 102, 159, 255),
         ),
-        color: const Color.fromARGB(255, 102, 159, 255),
-      ),
-      child: GestureDetector(
-        onTap: () {
-          final uid = context.read<AuthProvider>().uid;
-          context.read<CartProvider>().updateCartItemQuantity(itemName, isIncrement, uid);
-        },
-        child: Icon(
-          isIncrement ? Icons.add : Icons.remove,
-          color: Colors.white,
+        child: GestureDetector(
+          onTap: () {
+            final uid = context.read<AuthProvider>().uid;
+            context.read<CartProvider>().updateCartItemQuantity(itemName, isIncrement, uid);
+          },
+          child: Icon(
+            isIncrement ? Icons.add : Icons.remove,
+            color: Colors.white,
+          ),
         ),
       ),
     );

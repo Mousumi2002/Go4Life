@@ -96,8 +96,25 @@ class VendorProvider extends ChangeNotifier {
     }
 
     vendors.removeWhere((key, value) => value.medicines.isEmpty);
-    for (final vendor in vendors.values) {
-      print(vendor.outOfStockMedicines);
+    final vendorsList = vendors.values.toList();
+    if (cartVendorSort == CartVendorSort.cost) {
+      vendorsList.sort((a, b) {
+        final medicinesForVendorA = a.medicines;
+        final medicinesForVendorB = b.medicines;
+        num priceA = 0;
+        for (var medicine in medicinesForVendorA) {
+          priceA += medicine['quantity'] * medicine['price'];
+        }
+        num priceB = 0;
+        for (var medicine in medicinesForVendorB) {
+          priceB += medicine['quantity'] * medicine['price'];
+        }
+        return priceA.compareTo(priceB);
+      });
+    } else {
+      vendorsList.sort((a, b) {
+        return b.deliveryTime.compareTo(a.deliveryTime);
+      });
     }
 
     return vendorsList;
