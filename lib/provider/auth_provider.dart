@@ -17,6 +17,10 @@ class AuthProvider extends ChangeNotifier {
   String? _uid;
 
   String get uid => _uid ?? '';
+  String? _city;
+  String? _pincode;
+  String get city => _city ?? '';
+  String get pincode => _pincode ?? '';
 
   late String? phoneNo;
 
@@ -28,14 +32,17 @@ class AuthProvider extends ChangeNotifier {
   }
 
   Future<void> checkSignIn() async {
-    final SharedPreferences s = await SharedPreferences.getInstance();
+    final s = await SharedPreferences.getInstance();
     _isSignedIn = s.getBool("is_signedin") ?? false;
     _uid = _firebaseAuth.currentUser?.uid;
+    _city = s.getString("city");
+    _pincode = s.getString("pincode");
 
     //Check signed in status in firebase auth
     if (_uid != null) {
       //If signed in, get the phone number
       phoneNo = _firebaseAuth.currentUser?.phoneNumber;
+
     } else {
       //If not signed in, trigger sign out
       _isSignedIn = false;
@@ -105,8 +112,11 @@ class AuthProvider extends ChangeNotifier {
   //DATABASE Operations
 
   Future<bool> checkExistingUser() async {
-    DocumentSnapshot snapshot = await _firebaseFirestore.collection("users").doc(_uid).get();
+    DocumentSnapshot <Map<String, dynamic>>snapshot = await _firebaseFirestore.collection("users").doc(_uid).get();
     if (snapshot.exists) {
+      final data = snapshot.data();
+      _city = data!['city'];
+      _pincode = data['pincode'];
       //USER EXISTS
       return true;
     } else {
@@ -122,5 +132,12 @@ class AuthProvider extends ChangeNotifier {
   }) async {
     _isLoading = true;
     notifyListeners();
+  }
+  void setCityAndPincode(String city, String pincode) async{
+    final s = await SharedPreferences.getInstance();
+    s.setString("city", city);
+    s.setString("pincode", pincode);
+    _city = city;
+    _pincode = pincode;
   }
 }

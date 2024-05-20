@@ -11,6 +11,9 @@ class AppBarTitle extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
+    final city =  authProvider.city;
+    final pincode = authProvider.pincode;
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
@@ -19,9 +22,9 @@ class AppBarTitle extends StatelessWidget implements PreferredSizeWidget {
         color: Color.fromRGBO(12, 97, 255, 0.612),
         size: 35.0,
       ),
-      title: const Text("Kolkata,700028",
+      title: Text("${city}, ${pincode}",
           textAlign: TextAlign.start,
-          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 19.0, backgroundColor: Colors.white)),
+          style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 19.0, backgroundColor: Colors.white)),
       actions: <Widget>[
         IconButton(
           onPressed: () {

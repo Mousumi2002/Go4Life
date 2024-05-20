@@ -83,6 +83,7 @@ class VendorProvider extends ChangeNotifier{
 
     vendors.removeWhere((key, value) => value.medicines.isEmpty);
     for (final vendor in vendors.values) {
+      // ignore: avoid_print
       print(vendor.outOfStockMedicines);
     }
     return vendors;

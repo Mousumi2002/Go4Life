@@ -99,11 +99,11 @@ class CartSearchOptions extends StatelessWidget {
     );
   }
 
-  int getPrice(List medicines) {
+  double getPrice(List medicines) {
     num price = 0;
     for (var medicine in medicines) {
       price += medicine['quantity'] * medicine['price'];
     }
-    return price.toInt();
+    return price.toDouble();
   }
 }

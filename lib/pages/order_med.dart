@@ -82,7 +82,7 @@ class OrderMedicinePage extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        'Rs ${getPrice(medicines)}',
+                        '${medicines[0]['currency']} ${getPrice(medicines)}',
                         style: const TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.w400,
@@ -235,12 +235,12 @@ class OrderMedicinePage extends StatelessWidget {
     );
   }
 
-  int getPrice(List medicines) {
+  double getPrice(List medicines) {
     num price = 0;
     for (var medicine in medicines) {
       price += medicine['quantity'] * medicine['price'];
     }
-    return price.toInt();
+    return price.toDouble();
   }
 
   String getOutOfStock(List outOfStockMedicines) {

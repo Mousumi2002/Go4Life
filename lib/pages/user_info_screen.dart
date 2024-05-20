@@ -357,4 +357,11 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
       MaterialPageRoute(builder: (context) => const HomePage()),
     );
   }
+  void sendCityAndPincode(){
+
+    final ap = Provider.of<AuthProvider>(context,listen: false);
+    String city = cityController.text.trim();
+    String pincode = pincodeController.text.trim();
+    ap.setCityAndPincode(city, pincode);
+  }
 }
