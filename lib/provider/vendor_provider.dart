@@ -1,22 +1,28 @@
-
 import 'package:app_go/model/vendor_item.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../model/cart_item.dart';
 
-class VendorProvider extends ChangeNotifier{
-  final List <VendorItem> _vendors = [];
-  List <VendorItem> get vendors => _vendors;
-  final List <VendorItem> _medicines = [];
-  List <VendorItem> get medicines => _medicines;
+enum CartVendorSort { cost, time }
 
+class VendorProvider extends ChangeNotifier {
+  final List<VendorItem> _vendors = [];
 
-  addVendorItemListener(){
+  List<VendorItem> get vendors => _vendors;
+  final List<VendorItem> _medicines = [];
+
+  List<VendorItem> get medicines => _medicines;
+
+  CartVendorSort _cartVendorSort = CartVendorSort.cost;
+
+  CartVendorSort get cartVendorSort => _cartVendorSort;
+
+  void addVendorItemListener() {
     FirebaseFirestore.instance.collection('vendors').snapshots().listen((event) {
       _vendors.clear();
       final docs = event.docs;
-      for(final doc in docs){
+      for (final doc in docs) {
         final data = doc.data();
         final vendor = VendorItem.fromMap(data);
         _vendors.add(vendor);
@@ -24,7 +30,13 @@ class VendorProvider extends ChangeNotifier{
       notifyListeners();
     });
   }
-  Map<String, VendorItem> getVendorsForCart(List<CartItem> cartItems) {
+
+  void setCartVendorSort(CartVendorSort sort) {
+    _cartVendorSort = sort;
+    notifyListeners();
+  }
+
+  List<VendorItem> getVendorsForCart(List<CartItem> cartItems) {
     final Map<String, VendorItem> vendors = {};
     for (final cartItem in cartItems) {
       for (final vendor in _vendors) {
@@ -51,6 +63,7 @@ class VendorProvider extends ChangeNotifier{
               picture: vendor.picture,
               medicines: isOutOfStock ? [] : [medicine],
               outOfStockMedicines: isOutOfStock ? [medicine] : [],
+              deliveryTime: vendor.deliveryTime,
             );
             vendors[vendor.vid] = vendorCopy;
             break;
@@ -74,6 +87,7 @@ class VendorProvider extends ChangeNotifier{
                   'quantity': cartItem.quantity,
                 }
               ],
+              deliveryTime: vendor.deliveryTime,
             );
             vendors[vendor.vid] = vendorCopy;
           }
@@ -83,9 +97,9 @@ class VendorProvider extends ChangeNotifier{
 
     vendors.removeWhere((key, value) => value.medicines.isEmpty);
     for (final vendor in vendors.values) {
-      // ignore: avoid_print
       print(vendor.outOfStockMedicines);
     }
-    return vendors;
+
+    return vendorsList;
   }
 }

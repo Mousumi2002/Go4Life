@@ -2,7 +2,7 @@ class VendorItem {
   String name;
   String vid;
   String picture;
-
+  int deliveryTime;
   List<dynamic> medicines;
   List<dynamic> outOfStockMedicines;
 
@@ -11,6 +11,7 @@ class VendorItem {
     required this.vid,
     required this.picture,
     required this.medicines,
+    required this.deliveryTime,
     this.outOfStockMedicines = const [],
   });
   factory VendorItem.fromMap(Map<String, dynamic> map) {
@@ -19,6 +20,7 @@ class VendorItem {
       vid: map['vid'] ?? '',
       picture: map['picture'] ?? '',
       medicines: map['medications'] ?? [],
+      deliveryTime: map['deliveryTime'] ?? 0,
     );
   }
   Map<String, dynamic> toMap() {
@@ -27,6 +29,7 @@ class VendorItem {
       'vid': vid,
       'picture': picture,
       'medications': medicines,
+      'deliveryTime': deliveryTime,
     };
   }
 }

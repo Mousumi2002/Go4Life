@@ -50,28 +50,39 @@ class CartSearchOptions extends StatelessWidget {
                       children: [
                         Text(
                           vendor.name,
-                          style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black87),
-                        ),
-                        const SizedBox(height: 4),
-                        const Text(
-                          'Estimated Delivery : 1D',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w300,
-                            color: Color.fromARGB(255, 121, 121, 121),
-                          ),
+                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black87),
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          'Total Items : ${vendor.medicines.length}',
+                          'Estimated Delivery : ${vendor.deliveryTime}D',
                           style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w300,
                             color: Color.fromARGB(255, 121, 121, 121),
                           ),
+                        ),
+                        const SizedBox(height: 4),
+                        Row(
+                          children: [
+                            Text(
+                              'Total Items : ${vendor.medicines.length}',
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w300,
+                                color: Color.fromARGB(255, 121, 121, 121),
+                              ),
+                            ),
+                            if (vendor.outOfStockMedicines.isNotEmpty) ...[
+                              const SizedBox(
+                                width: 4,
+                              ),
+                              const Icon(
+                                Icons.warning_amber,
+                                color: Colors.red,
+                                size: 14,
+                              )
+                            ]
+                          ],
                         ),
                       ],
                     ),
@@ -81,8 +92,7 @@ class CartSearchOptions extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      vendor.medicines[0]['currency'] +
-                          getPrice(vendor.medicines).toString(),
+                      vendor.medicines[0]['currency'] + getPrice(vendor.medicines).toString(),
                       style: const TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.w500,

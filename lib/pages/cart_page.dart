@@ -18,12 +18,11 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  bool buttonState = true;
-
   void _buttonChange() {
-    setState(() {
-      buttonState = !buttonState;
-    });
+    final vendorProvider = Provider.of<VendorProvider>(context, listen: false);
+    vendorProvider.setCartVendorSort(
+      vendorProvider.cartVendorSort == CartVendorSort.cost ? CartVendorSort.time : CartVendorSort.cost,
+    );
   }
 
   @override
@@ -34,6 +33,7 @@ class _CartPageState extends State<CartPage> {
     final vendorProvider = Provider.of<VendorProvider>(context);
     //This stores the cart items from firebase
     final vendorItems = vendorProvider.getVendorsForCart(cartItems);
+    final buttonState = vendorProvider.cartVendorSort == CartVendorSort.cost;
     return Scaffold(
       appBar: const AppBarTitle(),
       body: Column(
@@ -44,8 +44,7 @@ class _CartPageState extends State<CartPage> {
             padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: Text(
               'Cart',
-              style: TextStyle(
-                  color: Color.fromARGB(255, 10, 55, 214), fontSize: 22),
+              style: TextStyle(color: Color.fromARGB(255, 10, 55, 214), fontSize: 22),
             ),
           ),
           const SizedBox(
@@ -100,10 +99,8 @@ class _CartPageState extends State<CartPage> {
                                     children: [
                                       IconButton(
                                         onPressed: () {
-                                          final uid =
-                                              context.read<AuthProvider>().uid;
-                                          cartProvider.removeCartItem(
-                                              item.name, uid);
+                                          final uid = context.read<AuthProvider>().uid;
+                                          cartProvider.removeCartItem(item.name, uid);
                                         },
                                         icon: Icon(
                                           Icons.delete,
@@ -115,9 +112,7 @@ class _CartPageState extends State<CartPage> {
                                   Center(
                                     child: Text(
                                       item.name,
-                                      style: const TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400),
+                                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                                       maxLines: 2,
                                     ),
                                   ),
@@ -126,8 +121,7 @@ class _CartPageState extends State<CartPage> {
                               ),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
-                                  color:
-                                      const Color.fromARGB(255, 255, 255, 255)),
+                                  color: const Color.fromARGB(255, 255, 255, 255)),
                             ),
                           ),
                         );
@@ -168,10 +162,11 @@ class _CartPageState extends State<CartPage> {
                     MaterialButton(
                       elevation: 0,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          side: const BorderSide(
-                            color: Color.fromARGB(255, 215, 229, 255),
-                          )),
+                        borderRadius: BorderRadius.circular(10),
+                        side: const BorderSide(
+                          color: Color.fromARGB(255, 215, 229, 255),
+                        ),
+                      ),
                       onPressed: buttonState ? _buttonChange : null,
                       child: const Text(
                         "Cost",
@@ -221,9 +216,9 @@ class _CartPageState extends State<CartPage> {
               separatorBuilder: (context, index) => const SizedBox(
                 height: 6,
               ),
-              itemCount: vendorItems.keys.length,
+              itemCount: vendorItems.length,
               itemBuilder: (context, index) {
-                final item = vendorItems.values.toList()[index];
+                final item = vendorItems[index];
                 return CartSearchOptions(vendor: item);
               },
             ),
@@ -273,8 +268,7 @@ class ItemQuantity extends StatelessWidget {
 }
 
 class QuantityAdjustButton extends StatelessWidget {
-  const QuantityAdjustButton(
-      {super.key, this.isIncrement = true, required this.itemName});
+  const QuantityAdjustButton({super.key, this.isIncrement = true, required this.itemName});
 
   final bool isIncrement;
   final String itemName;
@@ -294,9 +288,7 @@ class QuantityAdjustButton extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           final uid = context.read<AuthProvider>().uid;
-          context
-              .read<CartProvider>()
-              .updateCartItemQuantity(itemName, isIncrement, uid);
+          context.read<CartProvider>().updateCartItemQuantity(itemName, isIncrement, uid);
         },
         child: Icon(
           isIncrement ? Icons.add : Icons.remove,
