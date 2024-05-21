@@ -115,8 +115,7 @@ class AuthProvider extends ChangeNotifier {
     DocumentSnapshot <Map<String, dynamic>>snapshot = await _firebaseFirestore.collection("users").doc(_uid).get();
     if (snapshot.exists) {
       final data = snapshot.data();
-      _city = data!['city'];
-      _pincode = data['pincode'];
+      setCityAndPincode(data!['city'], data['pincode']);
       //USER EXISTS
       return true;
     } else {

@@ -45,13 +45,16 @@ class MedCard extends StatelessWidget {
               ),
             subtitle: Row(
               children: [
-                Text(
-                  medicineItem.manufacturer,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w300,
-                  ),
-                  ),
+                Flexible(
+                  child: Text(
+                    medicineItem.manufacturer,
+                    
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w300,
+                    ),
+                    ),
+                ),
                   if(cartItem == null)
                   const Spacer()
                   else

@@ -235,7 +235,8 @@ class ItemQuantity extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return SizedBox(
+      width: 130,
       child: Card(
         elevation: 0,
         child: Padding(
