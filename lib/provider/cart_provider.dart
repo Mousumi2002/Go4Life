@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app_go/model/cart_item.dart';
 import 'package:app_go/model/medicine_item.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -6,11 +8,11 @@ import 'package:get/get.dart';
 
 class CartProvider extends ChangeNotifier {
   List<CartItem> _cartItems = [];
-
+  StreamSubscription<DocumentSnapshot<Map<String, dynamic>>>? cartSubscription;
   List<CartItem> get cartItems => _cartItems;
 
   void addCartItemListener(String uid) {
-    FirebaseFirestore.instance.collection('cart').doc(uid).snapshots().listen((event) {
+    cartSubscription = FirebaseFirestore.instance.collection('cart').doc(uid).snapshots().listen((event) {
       _cartItems.clear();
       final data = event.data();
       if (data != null) {
@@ -52,7 +54,7 @@ class CartProvider extends ChangeNotifier {
     return _cartItems.firstWhereOrNull((element) => element.name == name);
   }
 
-  void addItem(MedicineItem medicineItem, String uid) {
+  void addItem(MedicineItem medicineItem, String uid) async{
     final index = _cartItems.indexWhere((element) => element.name == medicineItem.name);
     if (index == -1) {
       _cartItems.add(CartItem(
@@ -64,7 +66,20 @@ class CartProvider extends ChangeNotifier {
         name: medicineItem.name,
         quantity: _cartItems[index].quantity + 1);
     }
-    FirebaseFirestore.instance.collection('cart').doc(uid).update({
-      'items': cartItemsMap,});
+    final docRef = FirebaseFirestore.instance.collection('cart').doc(uid);
+    final data = await docRef.get();
+    if(data.exists){
+      docRef.update({
+        'items': cartItemsMap,
+      });
+    }
+    else{
+      docRef.set({'items': cartItemsMap});
+    }
+  }
+
+  void clearData() {
+    _cartItems.clear();
+    cartSubscription?.cancel();
   }
 }

@@ -2,6 +2,7 @@
 
 import 'package:app_go/model/user_data.dart';
 import 'package:app_go/pages/otp_screen.dart';
+import 'package:app_go/provider/cart_provider.dart';
 import 'package:app_go/utils/snackbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -52,11 +53,12 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> logOut() async {
+  Future<void> logOut(CartProvider cartProvider) async {
     final SharedPreferences s = await SharedPreferences.getInstance();
     s.setBool("is_signedin", false);
     await FirebaseAuth.instance.signOut();
     _isSignedIn = false;
+    cartProvider.clearData();
   }
 
   void signInWithPhone(BuildContext context, String phoneNumber) async {

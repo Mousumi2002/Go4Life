@@ -2,6 +2,7 @@
 
 import 'package:app_go/pages/registration.dart';
 import 'package:app_go/provider/auth_provider.dart';
+import 'package:app_go/provider/cart_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:provider/provider.dart';
@@ -43,7 +44,7 @@ class AppBarTitle extends StatelessWidget implements PreferredSizeWidget {
                         child: TextButton.icon(
                           icon: const Icon(Icons.exit_to_app_rounded),
                           onPressed: () async {
-                            await context.read<AuthProvider>().logOut();
+                            await context.read<AuthProvider>().logOut(context.read<CartProvider>());
                             pushWithoutNavBar(context, MaterialPageRoute(builder: (context) => const RegisterPage()));
                           },
                           label: const Text(

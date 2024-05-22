@@ -113,7 +113,7 @@ class VendorProvider extends ChangeNotifier {
       });
     } else {
       vendorsList.sort((a, b) {
-        return b.deliveryTime.compareTo(a.deliveryTime);
+        return a.deliveryTime.compareTo(b.deliveryTime);
       });
     }
 

@@ -1,7 +1,6 @@
 import 'package:app_go/components/appbar.dart';
 import 'package:app_go/components/med_item_card.dart';
 import 'package:app_go/provider/medicine_provider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

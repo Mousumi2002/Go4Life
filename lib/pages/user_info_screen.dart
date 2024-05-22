@@ -139,7 +139,7 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
                           label(labelText: "City"),
                           TextField(
                             hintText: "Kolkata",
-                            inputType: TextInputType.number,
+                            inputType: TextInputType.name,
                             maxlines: 1,
                             controller: cityController,
                             validator: (String? city) {
@@ -352,6 +352,7 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
     await docRef.set(userModel.toMap());
     SharedPreferences sp = await SharedPreferences.getInstance();
     sp.setBool("is_signedin", true);
+    sendCityAndPincode();
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => const HomePage()),

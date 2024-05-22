@@ -48,7 +48,6 @@ class MedCard extends StatelessWidget {
                 Flexible(
                   child: Text(
                     medicineItem.manufacturer,
-                    
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w300,
