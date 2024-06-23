@@ -1,6 +1,6 @@
-# app_go
+# Go4Life
 
-A new Flutter project.
+Streamlined Healthcare Services Through Mobile Innovations.
 
 ## Getting Started
 
